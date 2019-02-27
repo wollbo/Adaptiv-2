@@ -37,17 +37,20 @@ xhat = zeros(M,1);
 thetahat = zeros(M+N,N);
 delta = zeros(M,1);
 c = 1; % used in NLMS
-
+d = 10;
 for n=1:M-1
 
 	% Generate Y. Set elements of Y that does not exist to zero
     
-    Y(n<(N+1)) = 0;
-    Y(N+1) = y(n);
-    Y = Y(2:N+1,:);    
-    
+    Y(n<(N)) = 0;
+    if n > d
+        Y(N+1) = y(n-d);
+        Y = Y(2:N+1); 
+    end
+   
     % normalized muu
-    nmuu = muu/(c + norm(Y));
+    % nmuu = muu/(c + norm(Y));
+    nmuu = muu;
     
 	% Estimate of x
     % Predict yhat and subtract from y --> yields 'x'

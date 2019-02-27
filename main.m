@@ -6,7 +6,7 @@
 %%
 
 % LMS
-N = 128;
+N = 12;
 muu = 0.00001;
 
 [theta, xhat, delta] = LMS(y, N, muu);
