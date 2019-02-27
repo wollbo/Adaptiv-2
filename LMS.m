@@ -35,24 +35,16 @@ M = length(y);
 Y = zeros(N,1);
 xhat = zeros(M,1);
 thetahat = zeros(M+N,N);
+delta = zeros(M,1);
 c = 1; % used in NLMS
 
 for n=1:M-1
 
 	% Generate Y. Set elements of Y that does not exist to zero
     
-%     if n-N < 1
-%         for i = 1:N
-%             if n-i < 1
-%                 Y(i) = 0;
-%             end
-%         end
-%     else
     Y(n<(N+1)) = 0;
     Y(N+1) = y(n);
-    Y = Y(2:N+1,:);
-%     end
-    
+    Y = Y(2:N+1,:);    
     
     % normalized muu
     nmuu = muu/(c + norm(Y));
