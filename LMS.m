@@ -1,4 +1,4 @@
-function [thetahat,xhat]=lms(x,y,N,muu)
+function [thetahat,xhat]=lms(x,y,N,muu) %N = M ?
 
 % [thetahat,xhat]=lms(x,y,N,muu)
 %
@@ -28,11 +28,22 @@ function [thetahat,xhat]=lms(x,y,N,muu)
 
 % Loop
 
-for n=1:M
+M = length(y);
+Y = zeros(M+N,1);
+for n=1:M %M+N ?
 
 	% Generate Y. Set elements of Y that does not exist to zero
     
-
+    if n-N < 1
+        for i = 1:N
+            if n-i < 1
+                Y(n) = 0;
+            end
+        end
+    else
+        Y(n:n+N) = y(n-N:n);
+    end
+            
 	% Estimate of x
 
 

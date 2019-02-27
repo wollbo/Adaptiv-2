@@ -6,10 +6,10 @@
 %%
 
 % LMS
+   
+ % temp
 
-z = y; % temp
-
-soundsc(y)
+%soundsc(y)
 
 
 %%
