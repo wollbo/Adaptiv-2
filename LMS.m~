@@ -1,4 +1,4 @@
-function [thetahat,xhat,delta]=LMS(y,N,muu) %N = M ?
+function [thetahat,xhat, delta]=LMS(y,N,muu) %N = M ?
 
 % [thetahat,xhat]=lms(x,y,N,muu)
 %
@@ -35,30 +35,30 @@ M = length(y);
 Y = zeros(N,1);
 xhat = zeros(M,1);
 thetahat = zeros(M+N,N);
-c = 1; % used in NLMS
+c = 0.1; % used in NLMS
 
-for n=1:M-1
+for n=1:M-1 %M+N ? % N ?
 
 	% Generate Y. Set elements of Y that does not exist to zero
     
-%     if n-N < 1
-%         for i = 1:N
-%             if n-i < 1
-%                 Y(i) = 0;
-%             end
-%         end
-%     else
-    Y(n<(N+1)) = 0;
-    Y(N+1) = y(n);
-    Y = Y(2:N+1,:);
-%     end
+    if n-N < 1
+        for i = 1:N
+            if n-i < 1
+                Y(i) = 0;
+            end
+        end
+    else
+        Y(N+1) = y(n);
+        Y = Y(2:N+1,:);
+    end
+    
     
     
     % normalized muu
     nmuu = muu/(c + norm(Y));
     
 	% Estimate of x
-    % Predict yhat and subtract from y --> yields 'x'
+    % Predict Y and subtract from y --> yields x
     
     yhat = thetahat(n,:)*Y;
     
@@ -69,13 +69,13 @@ for n=1:M-1
 	% Update the n+1 row in the matrix thetahat which in the notation in the Lecture Notes
 	% corresponds to thetahat(n)
     
-	thetahat(n+1,:)= thetahat(n,:) - nmuu*Y'*(y(n+1)-yhat);
+	thetahat(n+1,:)= thetahat(n,:) - nmuu*Y(end)*(y(n+1)-yhat);
     
-    xhat(n+1) = y(n+1)-thetahat(n,:)*Y;
+    xhat(n+1) = y(n+1)-Y'*thetahat(n,:);
     
     
 end
-
+delta = mean(delta);
 
 % this line is necessary in block/one sample implementation with main loop in main.m
 % Shift thetahat one step so that row n corresponds to time n
