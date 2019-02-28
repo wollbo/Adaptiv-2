@@ -7,6 +7,7 @@
 N = 128;
 muu = 0.02;
 
+<<<<<<< HEAD
 [thetalms, xhatlms, delta] = LMS_j(y, N, muu);
 soundsc(xhatlms)
 
@@ -22,4 +23,24 @@ soundsc(xhatrls)
 %plotNoteSpectrum(y, xhatlms, xhatrls, fs);
 %plotFilteredSounds(y, xhatlms, xhatrls, fs);
 %plotEstimatedParameters(y, thetalms, thetarls);
-plotRLS(Pnorm);
+plotRLS(y, Pnorm);
+=======
+% LMS
+N = 512;
+delay = 50;
+muu = 0.1;
+
+mulim = analyzeMu(y,N) % varies with N
+%%
+[theta, xhat, delta] = LMS(y,N,muu,delay);
+
+soundsc(xhat)
+
+%%
+
+figure(1)
+plot(theta)
+figure(2)
+plot(delta(2*delay:end))
+
+
