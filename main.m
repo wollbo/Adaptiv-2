@@ -7,18 +7,21 @@
 
 % LMS
 N = 512;
+delay = 50;
 muu = 0.1;
 
-[theta, xhat, delta] = LMS(y, N, muu);
-% for i = 1:length(y)
-%     [xhat, theta] = LMS(y,N,muu);
-% end
-
-
- % temp
+mulim = analyzeMu(y,N) % varies with N
+%%
+[theta, xhat, delta] = LMS(y,N,muu,delay);
 
 soundsc(xhat)
+
+%%
+
+figure(1)
 plot(theta)
+figure(2)
+plot(delta(2*delay:end))
 
 
 %%
