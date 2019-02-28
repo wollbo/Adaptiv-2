@@ -1,5 +1,6 @@
 %% main ASP-2
 [y,fs]=audioread('EQ2401Project2data2019.wav');
+plot(y)
 
 %% LMS
 N = 512; %J 128
