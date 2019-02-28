@@ -37,7 +37,7 @@ xhat = zeros(M,1);
 thetahat = zeros(M,N);
 delta = zeros(M,1);
 c = 1; % used in NLMS
-d = 50;
+d = 10;
 for n=1:M-1
 	% Generate Y. Set elements of Y  that does not exist to zero
     
@@ -61,9 +61,8 @@ for n=1:M-1
 	% corresponds to thetahat(n)
     
     xhat(n+1) = y(n+1)-yhat;
-    %thetahat(n+1,1:N-1) = thetahat(n,2:N);
-	thetahat(n+1,:) = thetahat(n,:) + nmuu*Y(n,:)*(y(n+1)-yhat);
-    
+	thetahat(n+1,N)= thetahat(n,:) - nmuu*Y(n,:)*(y(n+1)-yhat);
+    thetahat(n+1,:) = thetahat(2:N+1,:);
     
 end
 

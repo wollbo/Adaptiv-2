@@ -7,7 +7,7 @@
 
 % LMS
 N = 512;
-muu = 0.1;
+muu = 0.03;
 
 [theta, xhat, delta] = LMS(y, N, muu);
 % for i = 1:length(y)
