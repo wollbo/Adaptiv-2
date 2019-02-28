@@ -1,4 +1,4 @@
-function [thetahat,xhat]=rls(x,y,N,lambda)
+function [thetahat,xhat] = RLS(y,N,lambda)
 
 % [thetahat,xhat]=rls(x,y,N,lambda)
 %
@@ -51,7 +51,3 @@ for n=1:M,
 
 	thetahat(n+1,:)=
 end
-
-% Shift thetahat one step so that row n corresponds to time n
-
-thetahat=thetahat(2:M+1,:);

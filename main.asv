@@ -22,4 +22,4 @@ soundsc(xhatrls)
 %plotNoteSpectrum(y, xhatlms, xhatrls, fs);
 %plotFilteredSounds(y, xhatlms, xhatrls, fs);
 %plotEstimatedParameters(y, thetalms, thetarls);
-plotRLS(y, Pnorm);
+plotRLS(Pnorm);
