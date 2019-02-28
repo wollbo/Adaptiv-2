@@ -7,9 +7,8 @@ semilogy(Pnorm);
 hold on
 grid on
 box off
-yl = ylim;
 for i = 1:length(noteIdx)
-    plot([noteIdx(i), noteIdx(i)], [yl(1), yl(2)], '--','Color',[.8 .1 .2 .7])
+    plot([noteIdx(i), noteIdx(i)], [1e2, 1e7], 'Color',[.5 .3 .2 .5])
 end
 end
 
