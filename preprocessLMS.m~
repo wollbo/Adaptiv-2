@@ -9,7 +9,7 @@ delta = zeros(M,1);
 c = 1; % used in NLMS
 yhat = zeros(M,1);
 feedback = 0.8;
-gamma = 1;
+gamma = 0.01;
 alpha = feedback; % should be incorporated
 
 for n=1:M-1
@@ -35,17 +35,15 @@ for n=1:M-1
     xhat(n+1) = y(n+1)-yhat(n);
 	thetahat(n+1,:) = thetahat(n,:) + muu*Y(n,:)*(y(n+1)-yhat(n));
     
-    
-    % double ALE
     if n > d
         Y(n+1,1:N-1) = Y(n,2:N);
-        thetaDistance = vectorDistance(thetahat(n+1,:), thetahat(n-10,:));
-        if thetaDistance < gamma
-            alpha = feedback;
-        else
-            alpha = 0;
-        end
-        Y(n+1,N) = (1-alpha)*y(n-d+1)+alpha*yhat(n-d); 
+%         thetaDistance = vectorDistance(thetahat(n+1,:), thetahat(n-10,:));
+%         if thetaDistance < gamma
+%             alpha = feedback;
+%         else
+%             alpha = 0;
+%         end
+        Y(n+1,N) = (1-alpha)*y(n-d)+alpha*yhat(n-d); 
     end
     
 end

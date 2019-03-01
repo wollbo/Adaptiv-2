@@ -5,18 +5,18 @@
 %% LMS
 N = 512; %J 128
 delay = 20;
-muu = 0.2; %J 0.02
+muu = 0.01; %J 0.02
 
 %mulim = analyzeMu(y,N); % varies with N
 [thetalms, xhatlms, delta] = LMS(y,N,muu,delay);
 
-soundsc(xhatlms)
+soundsc(xhatlms);
 
 %% pre-LMS
 
 N = 512; %J 128
 delay = 20;
-muu = 0.2; %J 0.02
+muu = 0.01; %J 0.02
 
 %mulim = analyzeMu(y,N); % varies with N
 [thetaplms, xhatplms, pdelta] = preprocessLMS(y,N,muu,delay);
