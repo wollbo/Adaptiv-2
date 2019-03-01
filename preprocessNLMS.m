@@ -8,8 +8,7 @@ thetahat = zeros(M,N);
 delta = zeros(M,1);
 c = 1; % used in NLMS
 yhat = zeros(M,1);
-feedback = 0.8;
-gamma = 1;
+alpha = 0.5;
 
 for n=1:M-1
 	% Generate Y. Set elements of Y  that does not exist to zero
@@ -32,14 +31,9 @@ for n=1:M-1
     
     
     % double ALE
+    % Note: very loose stationarity criterion
     if n > d
         Y(n+1,1:N-1) = Y(n,2:N);
-        thetaDistance = vectorDistance(thetahat(n+1,:), thetahat(n-10,:));
-        if thetaDistance < gamma
-            alpha = feedback;
-        else
-            alpha = 0;
-        end
         Y(n+1,N) = (1-alpha)*y(n-d+1)+alpha*yhat(n-d);  
     end
     yhat(n) = thetahat(n,:)*Y(n,:)';
