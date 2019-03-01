@@ -1,11 +1,10 @@
-function [thetahat,xhat,delta]= preprocessNLMS(y,N,muu,d)
+function [thetahat,xhat]= preprocessNLMS(y,N,muu,d)
 
 M = length(y);
 
 Y = zeros(M,N);
 xhat = zeros(M,1);
 thetahat = zeros(M,N);
-delta = zeros(M,1);
 c = 1; % used in NLMS
 yhat = zeros(M,1);
 alpha = 0.5;
@@ -26,12 +25,8 @@ for n=1:M-1
 	% corresponds to thetahat(n)
     
     assert(nmuu<2, 'LMSs unstable')
-    
-    
-    
-    
+
     % double ALE
-    % Note: very loose stationarity criterion
     if n > d
         Y(n+1,1:N-1) = Y(n,2:N);
         Y(n+1,N) = (1-alpha)*y(n-d+1)+alpha*yhat(n-d);  
