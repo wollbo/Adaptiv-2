@@ -23,6 +23,7 @@ for n=1:M-1
         warning('LMSs unstable');
     end
 
+
     xhat(n+1) = y(n+1)-yhat(n);
 	thetahat(n+1,:) = thetahat(n,:) + muu*Y(n,:)*(y(n+1)-yhat(n));
 end
