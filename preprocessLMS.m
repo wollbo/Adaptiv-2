@@ -42,7 +42,7 @@ for n=1:M-1
         else
             alpha = 0;
         end
-        Y(n+1,N) = (1-alpha)*y(n-d)+alpha*yhat(n-d); 
+        Y(n+1,N) = (1-alpha)*y(n+1-d)+alpha*yhat(n-d); 
     end
     
 end
