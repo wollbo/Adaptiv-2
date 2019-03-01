@@ -11,7 +11,7 @@ muu = 0.02;
 %% pre-LMS
 N = 128;
 delay = 40;
-muu = 0.2;
+muu = 0.5;
 
 [thetaplms, xhatplms] = preprocessNLMS(y,N,muu,delay);
 

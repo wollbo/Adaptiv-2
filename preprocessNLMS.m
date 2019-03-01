@@ -8,7 +8,7 @@ xhat = zeros(M,1);
 thetahat = zeros(M,N);
 c = 1;
 yhat = zeros(M,1);
-alpha = 0.5;
+alpha = 0.8;
 
 if (muu>2)
     warning('LMS unstable');
