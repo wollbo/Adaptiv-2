@@ -11,8 +11,6 @@ yhat = zeros(M,1);
 feedback = 0.8;
 gamma = 1;
 
-%ypp = filter(H,1,y);
-
 for n=1:M-1
 	% Generate Y. Set elements of Y  that does not exist to zero
    

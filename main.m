@@ -6,11 +6,8 @@
 %% LMS
 N = 512; %J 128
 delay = 20;
-<<<<<<< HEAD
 muu = 0.02; %J 0.02
-=======
-muu = 0.01; %J 0.02
->>>>>>> 23bb6e9d24b17f32ecea4ffec046582b0a599eaa
+
 
 %mulim = analyzeMu(y,N); % varies with N
 [thetalms, xhatlms, delta] = LMS(y,N,muu,delay);
@@ -21,19 +18,12 @@ soundsc(xhatlms);
 
 N = 512; %J 128
 delay = 20;
-<<<<<<< HEAD
-muu = 0.02; %J 0.02
-
-%mulim = analyzeMu(y,N); % varies with N
-[thetaplms, xhatplms, pdelta] = preprocessLMS(y,N,muu,delay);
-%[thetaplms, xhatplms, pdelta] = preprocessLMSrev(xhatplms,5,0.0000002,4);
-=======
 muu = 0.1; %J 0.02
 
-%mulim = analyzeMu(y,N); % varies with N
-[thetaplms, xhatplms, pdelta] = preprocessNLMS(y,N,muu,delay,H);
+[thetaplms, xhatplms, pdelta] = preprocessNLMS(y,N,muu,delay);
+%[thetaplms, xhatplms, pdelta] = preprocessLMSrev(xhatplms,5,0.0000002,4);
 
->>>>>>> 23bb6e9d24b17f32ecea4ffec046582b0a599eaa
+
 soundsc(xhatplms)
 
 
