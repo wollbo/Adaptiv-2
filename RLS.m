@@ -1,4 +1,4 @@
-function [thetahat,xhat, Pnorm]=RLS(y,N,lambda)
+function [thetahat,xhat, Pnorm]=RLS(y,N,lambda, delay)
 
 % [thetahat,xhat]=rls(x,y,N,lambda)
 %
@@ -28,7 +28,7 @@ function [thetahat,xhat, Pnorm]=RLS(y,N,lambda)
 
 % Initialize P, xhat and thetahat
 M = length(y);
-d = 100;
+d = delay;
 
 %P = zeros(N,N,M);
 %P(:,:,1) = 1e5 .* eye(N);
