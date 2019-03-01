@@ -7,6 +7,8 @@ delay = 20;
 muu = 0.02; %J 0.02
 
 [thetalms, xhatlms, delta] = LMS(y,N,muu,delay);
+soundsc(xhatlms);
+
 
 %% pre-LMS
 N = 256; %J 128
@@ -14,19 +16,25 @@ delay = 40;
 muu = 0.02; %J 0.02
 
 [thetaplms, xhatplms, pdelta] = preprocessNLMS(y,N,muu,delay);
+soundsc(xhatplms)
+[thetaplms, xhatplms, pdelta] = preprocessLMSrev(xhatplms,16, 4e-3,1);
+pause(3.8)
+soundsc(xhatplms)
 
 %% RLS
 N = 128;
 delay = 20;
 lambda = 1 - 0.0001;
 [thetarls,xhatrls, Pnorm]=RLS(y,N,lambda, delay);
+soundsc(xhatrls)
+
 
 %% Diagnostics
 
 %plotNoteSpectrum(y, xhatlms, xhatrls, fs);
-%plotFilteredSounds(y, xhatlms, xhatrls, fs);
+% plotFilteredSounds(y, xhatlms, xhatrls, fs);
 %plotEstimatedParameters(thetalms, thetarls);
-%plotFilterAni(y, thetaplms, fs);
+plotFilterAni(y, thetaplms, fs);
 % plotRLS(Pnorm);
 
 % figure(1)
