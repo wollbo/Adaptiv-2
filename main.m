@@ -21,10 +21,10 @@ soundsc(xhatrls)
 
 %% Diagnostics
 
-plotNoteSpectrum(y, xhatlms, xhatrls, fs);
-plotFilteredSounds(y, xhatlms, xhatrls, fs);
-% plotEstimatedParameters(thetalms, thetarls);
-plotRLS(Pnorm);
+% plotNoteSpectrum(y, xhatlms, xhatrls, fs);
+% plotFilteredSounds(y, xhatlms, xhatrls, fs);
+plotEstimatedParameters(thetalms, thetarls);
+% plotRLS(Pnorm);
 
 % figure(1)
 % plot(theta)
