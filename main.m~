@@ -6,25 +6,34 @@
 %% LMS
 N = 512; %J 128
 delay = 20;
+
 muu = 0.02; %J 0.02
+
 
 %mulim = analyzeMu(y,N); % varies with N
 [thetalms, xhatlms, delta] = LMS(y,N,muu,delay);
 
 soundsc(xhatlms);
 
+%% pre-NLMS
 
-%% pre-LMS
-N = 256; %J 128
-delay = 40;
+N = 512; %J 128
+delay = 20;
+<<<<<<< HEAD
 muu = 0.02; %J 0.02
 
 %mulim = analyzeMu(y,N); % varies with N
-[thetaplms, xhatplms, pdelta] = preprocessLMS(y,N,muu,delay,H);
+[thetaplms, xhatplms, pdelta] = preprocessLMS(y,N,muu,delay);
+%[thetaplms, xhatplms, pdelta] = preprocessLMSrev(xhatplms,5,0.0000002,4);
+=======
+muu = 0.1; %J 0.02
 
-% [thetaplms, xhatplms, pdelta] = preprocessLMSrev(xhatplms,16, 4e-7,1);
-% pause(3.8)
-% soundsc(xhatplms)
+%mulim = analyzeMu(y,N); % varies with N
+[thetaplms, xhatplms, pdelta] = preprocessNLMS(y,N,muu,delay,H);
+
+>>>>>>> 23bb6e9d24b17f32ecea4ffec046582b0a599eaa
+soundsc(xhatplms)
+
 
 %% RLS
 N = 128;
@@ -38,8 +47,7 @@ soundsc(xhatrls)
 
 % plotNoteSpectrum(y, xhatlms, xhatrls, fs);
 % plotFilteredSounds(y, xhatlms, xhatrls, fs);
-%plotEstimatedParameters(thetalms, thetarls);
-plotFilterAni(y, thetaplms, fs);
+plotEstimatedParameters(thetalms, thetarls);
 % plotRLS(Pnorm);
 
 % figure(1)

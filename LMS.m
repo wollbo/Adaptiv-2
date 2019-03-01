@@ -28,7 +28,6 @@ function [thetahat,xhat,delta]=LMS(y,N,muu,d)
 
 % Loop
 
-% normalize muu see p. 137
 
 M = length(y);
 
