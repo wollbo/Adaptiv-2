@@ -11,14 +11,15 @@ for i = 1:numframes
     %hold on
     
     filtPar = theta((i-1)*ulen+floor(framelen/2),:);
-    H = abs(fft(filtPar, 512));
+    
+    H = abs(fft(, 512));
     H = H(1:512/2 +1);
 
     plot(w, 10*log10(P));
     hold on
-    plot(w, 20*log10(H));
-    legend('Input Signal', 'Filter');
-    ylim([-120,30]);
+    plot(w, 10*log10(H)-40);
+    
+    ylim([-120,-10]);
     xlim([0, 4000]);
     grid on 
     box off
@@ -27,9 +28,7 @@ for i = 1:numframes
     subplot(2,1,2)
     plot(y);
     rectangle('Position', [i*ulen, min(y), framelen, max(y)-min(y)], 'FaceColor', [0.6 0.7 0.6 0.4], 'EdgeColor', [1 1 1, 0])
-    rectangle('Position', [i*ulen+framelen/2, min(y), 64, max(y)-min(y)], 'FaceColor', [0.6 0.7 0.6 1], 'EdgeColor', [1 1 1, 0])
     xlim([1, length(y)]);
-    box off
     
     drawnow
 
