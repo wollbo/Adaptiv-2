@@ -2,34 +2,53 @@
 [y,fs]=audioread('EQ2401Project2data2019.wav');
 
 %% LMS
-N = 512; %J 128
-delay = 20;
-muu = 0.02; %J 0.02
+N = 128;
+delay = 40;
+muu = 0.02;
 
 [thetalms, xhatlms, delta] = LMS(y,N,muu,delay);
 
 %% pre-LMS
-N = 256; %J 128
+N = 128;
 delay = 40;
-muu = 0.02; %J 0.02
+muu = 0.2;
 
-[thetaplms, xhatplms, pdelta] = preprocessNLMS(y,N,muu,delay);
+[thetaplms, xhatplms] = preprocessNLMS(y,N,muu,delay);
 
 %% RLS
 N = 128;
-delay = 20;
-lambda = 1 - 0.0001;
-[thetarls,xhatrls, Pnorm]=RLS(y,N,lambda, delay);
+delay = 40;
+lambda = 1 - 0.00001;
+[thetarls, xhatrls, Pnorm]=RLS(y,N,lambda, delay);
+
+%% Filter Animations
+plotFilterAni(y, thetalms, fs);
+plotFilterAni(y, thetaplms, fs);
+plotFilterAni(y, thetarls, fs);
 
 %% Diagnostics
+% Plots spectrum of the filtered signals during the middle of each note
+plotNoteSpectrum(y, xhatlms, xhatplms, xhatrls, fs);
 
-%plotNoteSpectrum(y, xhatlms, xhatrls, fs);
-%plotFilteredSounds(y, xhatlms, xhatrls, fs);
-%plotEstimatedParameters(thetalms, thetarls);
-%plotFilterAni(y, thetaplms, fs);
-% plotRLS(Pnorm);
+% Shows the filtered signals in the time domain
+plotFilteredSounds(y, xhatlms, xhatplms, xhatrls);
 
-% figure(1)
-% plot(theta)
-% figure(2)
-% plot(delta(2*delay:end))
+% Shows a few of the estimated parameters over time
+plotEstimatedParameters(thetalms, thetaplms, thetarls);
+
+%% Listening
+audiolen = length(y) / fs;
+wait = 0.4;
+
+soundsc(y);
+pause(audiolen + wait);
+soundsc(xhatlms);
+pause(audiolen + wait);
+soundsc(xhatplms);
+pause(audiolen + wait);
+soundsc(xhatrls);
+pause(audiolen + wait);
+
+%% Extra Plots
+plotRLS(Pnorm);
+

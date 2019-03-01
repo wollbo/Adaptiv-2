@@ -38,6 +38,10 @@ thetahat = zeros(M,N);
 delta = zeros(M,1);
 c = 1; % used in NLMS
 
+if (nmuu>2)
+    warning('LMS unstable');
+end
+
 for n=1:M-1
 	% Generate Y. Set elements of Y  that does not exist to zero
     
@@ -61,8 +65,6 @@ for n=1:M-1
 
 %     delta(n) = eigenAnalyze(Y(n,:),nmuu);
 %     assert(delta(n)>0, 'LMSs unstable')
-
-    assert(nmuu < 2, 'LMS unstable')
     
     xhat(n+1) = y(n+1)-yhat;
 	thetahat(n+1,:) = thetahat(n,:) + nmuu*Y(n,:)*(y(n+1)-yhat);
