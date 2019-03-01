@@ -1,4 +1,4 @@
-function [thetahat,xhat,delta]=LMS(y,N,muu,d)
+function [thetahat,xhat]=LMS(y,N,muu,d)
 
 % [thetahat,xhat]=lms(x,y,N,muu)
 %
@@ -56,8 +56,8 @@ for n=1:M-1
 	% corresponds to thetahat(n)
     
 
-    delta(n) = eigenAnalyze(Y(n,:),muu);
-    assert(delta(n)>0, 'LMSs unstable')
+    mu_delta(n) = eigenAnalyze(Y(n,:),muu);
+    assert(mu_delta(n)>0, 'LMSs unstable')
 
 
     
