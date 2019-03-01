@@ -13,14 +13,14 @@ muu = 0.01; %J 0.02
 
 soundsc(xhatlms);
 
-%% pre-NLMS
+%% pre-LMS
 
 N = 512; %J 128
 delay = 20;
 muu = 0.1; %J 0.02
 
 %mulim = analyzeMu(y,N); % varies with N
-[thetaplms, xhatplms, pdelta] = preprocessNLMS(y,N,muu,delay,H);
+[thetaplms, xhatplms, pdelta] = preprocessLMS(y,N,muu,delay,H);
 
 soundsc(xhatplms)
 
